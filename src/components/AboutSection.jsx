@@ -1,35 +1,41 @@
 import React from 'react';
 import home1 from '../img/home1.png';
 import { styled } from 'styled-components';
-
+// Framer Motion
+import { motion } from 'framer-motion';
+import { titleAnimate, fade, photoAnimate } from '../animation';
+import Wave from './Wave';
+// Style
 import {About, Description, Image, Hide} from '../styles'
 
 const AboutSection = () => {
+
    return (
       <About>
          <Description>
-            <div className="title">
+            <motion.div className="title">
                <Hide>
-                  <h2>We work to make</h2>
+                  <motion.h2 variants={titleAnimate}>We work to make</motion.h2>
                </Hide>
                <Hide>
-                  <h2>your <span>dreams</span> come</h2>
+                  <motion.h2 variants={titleAnimate}>your <span>dreams</span> come</motion.h2>
                </Hide>
                <Hide>
-                  <h2>true.</h2>
+                  <motion.h2 variants={titleAnimate}>true.</motion.h2>
                </Hide>
-            </div>
-            <p>
+            </motion.div>
+            <motion.p variants={fade}>
                Contact us for any photography or videography ideas that you have. We have professionals with amazing skills.
-            </p>
-            <button>Contact us</button>
+            </motion.p>
+            <motion.button variants={fade}>Contact us</motion.button>
          </Description>
          <Image>
-            <img src={home1} alt="guy with a cam" />
+            <motion.img variants={photoAnimate} src={home1} alt="guy with a cam" />
          </Image>
+         <Wave />
       </About>
    )
 }
 
 
-export default AboutSection
+export default AboutSection;
