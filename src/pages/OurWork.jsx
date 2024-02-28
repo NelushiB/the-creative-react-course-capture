@@ -1,15 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import { styled } from "styled-components";
 //Images
 import athlete from "../img/athlete-small.png";
 import theracer from "../img/theracer-small.png";
 import goodtimes from "../img/goodtimes-small.png";
 // Animations
 import { motion } from "framer-motion";
-import { pageAnimation, fade, photoAnimate, lineAnimate, slider, sliderContainer } from "../animation";
+import {
+   pageAnimation,
+   fade,
+   photoAnimate,
+   lineAnimate,
+   slider,
+   sliderContainer,
+} from "../animation";
+import { useScroll } from "../components/useScroll";
 
 const OurWork = () => {
+   const [element, controls] = useScroll();
+   const [element2, controls2] = useScroll();
+
+
    return (
       <Work
          style={{ background: "#fff" }}
@@ -33,26 +45,34 @@ const OurWork = () => {
                </Hide>
             </Link>
          </Movie>
-         <Movie>
-            <motion.h2 variants={fade}>The Racer</motion.h2>
+         <Movie ref={element} variants={fade} animate={controls} initial="hidden">
+            <h2>The Racer</h2>
             <motion.div variants={lineAnimate} className="line"></motion.div>
             <Link to="/work/the-racer">
                <Hide>
-                  <motion.img variants={photoAnimate} src={theracer} alt="the racer" />
+                  <motion.img
+                     variants={photoAnimate}
+                     src={theracer}
+                     alt="the racer"
+                  />
                </Hide>
             </Link>
          </Movie>
-         <Movie>
+         <Movie ref={element2} variants={fade} animate={controls2} initial="hidden">
             <motion.h2 variants={fade}>Good Times</motion.h2>
             <motion.div variants={lineAnimate} className="line"></motion.div>
             <Link to="/work/good-times">
                <Hide>
-                  <motion.img variants={photoAnimate} src={goodtimes} alt="good times" />
+                  <motion.img
+                     variants={photoAnimate}
+                     src={goodtimes}
+                     alt="good times"
+                  />
                </Hide>
             </Link>
          </Movie>
       </Work>
-   )
+   );
 };
 
 const Work = styled(motion.div)`
@@ -63,7 +83,7 @@ const Work = styled(motion.div)`
       padding: 1rem 0rem;
    }
 `;
-const Movie = styled.div`
+const Movie = styled(motion.div)`
    padding-bottom: 10rem;
    .line {
       height: 0.5rem;
@@ -75,7 +95,7 @@ const Movie = styled.div`
       height: 80vh;
       object-fit: cover;
    }
-`;
+   `;
 
 const Hide = styled.div`
    overflow: hidden;
@@ -83,25 +103,25 @@ const Hide = styled.div`
 
 // Frame Animation
 const Frame1 = styled(motion.div)`
-   position: fixed;
-   left: 0;
-   top: 10%;
-   width: 100%;
-   height: 100vh;
-   background: #fffebf;
-   z-index: 2;
+  position: fixed;
+  left: 0;
+  top: 10%;
+  width: 100%;
+  height: 100vh;
+  background: #fffebf;
+  z-index: 2;
 `;
 
 const Frame2 = styled(Frame1)`
-   background: #ff8efb;
+  background: #ff8efb;
 `;
 
 const Frame3 = styled(Frame1)`
-   background: #8ed2ff;
+  background: #8ed2ff;
 `;
 
 const Frame4 = styled(Frame1)`
-   background: #8effa0;
+  background: #8effa0;
 `;
 
 export default OurWork;

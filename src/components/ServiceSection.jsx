@@ -7,11 +7,15 @@ import teamwork from '../img/teamwork.svg';
 import home2 from '../img/home2.png';
 //Styles
 import { styled } from 'styled-components';
-import {About, Description, Image, Hide} from '../styles'
+import {About, Description, Image} from '../styles'
+
+import { fade } from '../animation';
+import { useScroll } from '../components/useScroll';
 
 const ServiceSection = () => {
+   const [element, controls] = useScroll();
    return (
-      <Services>
+      <Services variants={fade} animate={controls} initial="hidden" ref={element}>
          <Description>
             <h2>High <span>quality</span> services</h2>
             <Cards>
@@ -29,6 +33,8 @@ const ServiceSection = () => {
                   </div>
                   <p>Lorem ipsum dolor sit amet.</p>
                </Card>
+               </Cards>
+               <Cards>
                <Card>
                   <div className="icon">
                      <img src={teamwork} alt="teamwork" />
@@ -68,7 +74,7 @@ const Cards = styled.div`
 `;
 
 const Card = styled.div`
-   flex-basis: 20rem;
+   width: 50%;
    .icon {
       display: flex;
       align-items: center;

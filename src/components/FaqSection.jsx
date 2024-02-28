@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 //Style
 import { styled } from 'styled-components';
 import { About } from '../styles';
@@ -6,11 +6,11 @@ import { About } from '../styles';
 import Toggle from './Toggle';
 //Animation
 import { LayoutGroup } from 'framer-motion';
+import { fade } from '../animation';
 
 const FaqSection = () => {
-
    return (
-      <Faq>
+      <Faq variants={fade}>
          <h2>Any Questions <span>FAQ</span></h2>
          <LayoutGroup>
          <Toggle title="How Do I Start?">
